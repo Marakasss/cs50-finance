@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+<p class="h2">History</p>
+
+
+<table class="table table-success table-striped shadow-sm" style="border: 2px solid rgba(0, 0, 0, 0.125);">
+    <thead>
+        <tr>
+            <th scope="col">Action</th>
+            <th scope="col">Date</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Symbol</th>
+            <th scope="col">Number</th>
+            <th scope="col">Price</th>
+            <th scope="col">Buyed</th>
+            <th scope="col">Selled</th>
+            <th scope="col">Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stock in stocks %}
+        <tr>
+            <td>{{ stock.Action }}</td>
+            <td>{{ stock.Date }}</td>
+            <td>{{ stock.Shares }}</td>
+            <td>{{ stock.Symbol }}</td>
+            <td>{{ stock.Number }}</td>
+            <td>{{ stock.Price | usd }}</td>
+            <td>{{ stock.Buyed | usd }}</td>
+            <td>{{ stock.Selled | usd}}</td>
+            <td>{{ stock.Balance | usd }}</td>
+        </tr>
+
+
+
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

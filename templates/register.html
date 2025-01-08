@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    register
+{% endblock %}
+
+{% block main %}
+
+<script>
+    $(document).ready(function() {
+    $('#username').keyup(function() {
+        var username = $(this).val();
+        $.get('/check', 'username=' + username, function(data) {
+            if (data) {
+                $('#username_feedback').text('Username is available.');
+            } else {
+                $('#username_feedback').text('This username is already taken. Try another.');
+            }
+        });
+    });
+
+    $('#registration_form').submit(function(event) {
+        var username = $('#username').val();
+        $.get('/check', 'username=' + username, function(data) {
+            if (data) {
+                $('#register-form').submit();
+            } else {
+                $('#username_feedback').text('This username is already taken. Try another.');
+                event.preventDefault();
+            }
+        });
+    });
+});
+
+</script>
+
+    <form id="registration-form" action="/register" method="post">
+
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Username" type="text">
+
+            <div id="username_feedback"></div>
+        </div>
+
+
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Confirmation" type="password">
+        </div>
+        <p style="color: red; font-size: small;">one uppercase letter, one lowercase letter and a number</p>
+        <button class="btn btn-primary" type="submit">Register</button>
+
+
+
+    </form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+
+{% block main %}
+<P>
+  check50 cs50/problems/2019/ap/finance
+</P>
+    <table class="table table-success table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Symbol</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{info['name']}}</td>
+            <td>{{symbol}}</td>
+            <td>{{info['price'] | usd}} $</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+{% endblock %}

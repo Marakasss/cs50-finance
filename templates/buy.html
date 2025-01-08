@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+
+{% block main %}
+
+<form id="buy-form" action="/buy" method="post">
+    <div class="input-group mb-3 border border-5">
+        <input type="text" class="form-control" name="symbol" placeholder="Symbol" value="{{symbol}}">
+        <span class="input-group-text col-5">Name:{{name}}</span>
+        <input type="number" min="0" step="1" class="form-control col-1" name="shares"
+        placeholder="Number" value="{{ request.form.get('shares', '') }}">
+        <span class="input-group-text col-2" name="price">Price:{{price | usd}}</span>
+        <span class="input-group-text col-2" name="totalprice">Total:{{totalprice}}</span>
+        <span class="input-group-text">$</span>
+    </div>
+
+
+    <button class="btn btn-primary" type="submit" name="action" value="total">TOTAL</button>
+    <button class="btn btn-primary" type="submit" name="action" value="buy">BUY</button>
+
+
+
+
+<P>
+    <div class="d-flex justify-content-end">
+        <table class="table table-success table-striped col-3">
+
+            <tr>
+                <th scope="col">Your Balance</th>
+                <th scope="col">{{balance_form}}</th>
+            </tr>
+        </table>
+    </div>
+</P>
+
+
+</form>
+
+
+
+{% endblock %}

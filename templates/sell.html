@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+
+{% block main %}
+<form id="sell-form" action="/sell" method="post">
+
+
+
+
+    <div class="input-group mb-3 border border-5">
+        <select class="form-select col-2" name="symbol" aria-label="Default select example">
+            <option value="" disabled selected>Your shares. Сhoose to sell.</option>
+            {% for stock in stocks %}
+            <option value="{{ stock['Symbol'] }}"> {{ stock['Symbol'] }} </option>
+            {% endfor %}
+
+        <input type="number" min="0" step="1" class="form-control col-1" name="shares"
+        placeholder="Number" value="{{ request.form.get('shares', '') }}">
+        <span class="input-group-text col-5">Name:{{name}}</span>
+        <span class="input-group-text col-2" name="price">Price:{{price}}</span>
+        <span class="input-group-text col-2" name="totalprice">Total:{{totalprice}}</span>
+        <span class="input-group-text">$</span>
+    </div>
+
+<P>
+    <button class="btn btn-primary" type="submit" name="action" value="total">Total</button>
+    <button class="btn btn-primary" type="submit" name="action" value="sell">Sell</button>
+    </P>
+    <P>
+        <div class="d-flex justify-content-end">
+            <table class="table table-success table-striped col-3">
+
+                <tr>
+                    <th scope="col">Your Balance</th>
+                    <th scope="col">{{balance_form}}</th>
+                </tr>
+            </table>
+        </div>
+    </P>
+
+</form>
+
+{% endblock %}
